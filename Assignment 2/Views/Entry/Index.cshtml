@@ -1,0 +1,61 @@
+﻿@model SampleQuestion
+@{
+    ViewData["Title"] = "Index";
+}
+@if (ViewBag.CanAdd == true)
+{
+    <h1>
+        @(ViewBag.Type != "Edit" ? "Enter A Question" : "Edit Question")
+    </h1>
+    <form asp-action="Index" method="post">
+        <input type="hidden" asp-for="QuestionId" />
+        <div class="form-group">
+            <span asp-validation-for="Question" class="text-danger"></span>
+            <br/>
+            <label>Question</label>
+            <input asp-for="Question" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Option 1</label>
+            <input asp-for="Option1" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Option 2</label>
+            <input asp-for="Option2" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Option 3</label>
+            <input asp-for="Option3" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Option 4</label>
+            <input asp-for="Option4" class="form-control" />
+        </div>
+        <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
+        <br/>
+        Answer
+        <br />
+        <div class="radio">
+            <label><input type="radio" asp-for="CorrectAnswer" value="1" /> 1 </label>
+            <br />
+            <label><input type="radio" asp-for="CorrectAnswer" value="2" /> 2 </label>
+            <br />
+            <label><input type="radio" asp-for="CorrectAnswer" value="3" /> 3 </label>
+            <br />
+            <label><input type="radio" asp-for="CorrectAnswer" value="4" /> 4 </label>
+        </div>
+        <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="@(ViewBag.Type != "Edit" ? "Submit Question" : "Save Changes")" />
+            @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-danger" })
+        </div>
+    </form>
+
+}
+else
+{
+    <div class="text-center">
+        <h3 class="text-primary">Question Limit Exceeded</h3>
+        <p>Can't Add more than 10 questions</p>
+        @Html.ActionLink("Go Home", "Index", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+}

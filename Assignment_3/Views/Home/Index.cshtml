@@ -1,0 +1,15 @@
+﻿@model EmailModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    <div class="text-center form-group">
+        <h1 class="display-4">Enter your Email</h1>
+        <input type="email" asp-for="Email" class="form-control px-3" />
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Start Test" />            
+    </div>
+</form>
+

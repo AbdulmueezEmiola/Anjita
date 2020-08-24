@@ -1,0 +1,36 @@
+﻿@model  SampleQuestionViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<form method="post">
+    <h1>Question @Model.QuestionNumber</h1>
+    <p class="lead">@Model.SampleQuestion.Question</p>
+    <div class="radio">
+        <label><input type="radio" name="Answer" value="1" checked="@(Model.Answer==1)"/> @Model.SampleQuestion.Option1 </label>
+        <br />
+        <label><input type="radio" name="Answer" value="2" checked="@(Model.Answer==2)"/> @Model.SampleQuestion.Option2 </label>
+        <br />
+        <label><input type="radio" name="Answer" value="3" checked="@(Model.Answer==3)" /> @Model.SampleQuestion.Option3 </label>
+        <br />
+        <label><input type="radio" name="Answer" value="4" checked="@(Model.Answer==4)"/> @Model.SampleQuestion.Option4 </label>
+    </div>
+    <input type="hidden" id="pos" name="pos" value="@(Model.QuestionNumber-1)" />
+    <input type ="hidden" id="QuestionId" name="QuestionId" value="@Model.SampleQuestion.QuestionId"/>    
+    <div>
+        @if (Model.ShowPrev)
+        {
+            <input class="btn btn-primary" type="submit" value="Prev" name="Prev" asp-action="Index" asp-controller="Question" />
+        }
+        @if (Model.ShowNext)
+        {
+            <input class="btn btn-primary float-right" type="submit" name="Next" value="Next" asp-action="Index" asp-controller="Question" />
+        }
+        else
+        {
+            @Html.ActionLink("Submit","Index","Result",null,new { @class="btn btn-primary float-right"})
+        }
+    </div>
+</form>
+
+
+

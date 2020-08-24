@@ -1,0 +1,54 @@
+﻿@model IQueryable<SampleQuestion>
+@{
+    ViewData["Title"] = "Questions";
+}
+
+@if (Model.Count() > 0)
+{
+    <h3 class="text-center">Questions List</h3>
+    <div class="container">
+        @foreach (var p in Model)
+        {
+            <div class="col bg-light mb-2 rounded">
+                <div class="row ml-1">
+                    <Label class="lead">Question: @p.Question</Label>
+                </div>
+                <div class="row p-1">
+                    <div class="col-sm col-md col-lg">
+                        <label>Option 1: </label>
+                        @p.Option1
+                    </div>
+                    <div class="col-sm col-md col-lg">
+                        <label>Option 2: </label>
+                        @p.Option2
+                    </div>
+                    <div class="col-sm col-md col-lg">
+                        <label>Option 3: </label>
+                        @p.Option3
+                    </div>
+                    <div class="col-sm col-md col-lg">
+                        <label>Option 4: </label>
+                        @p.Option4
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-sm col-md col-lg">
+                        <label>Answer: </label>
+                        @p.CorrectAnswer
+                    </div>
+                    <div class="col-sm col-md col-lg">
+                        <form class="float-right">
+                            <input type="hidden" id="questionId" name="questionId" value="@p.QuestionId" />
+                            <input class="btn btn-primary" type="submit" value="Edit" asp-action="EditProduct" asp-controller="Home" />
+                            <input class="btn btn-danger" type="submit" value="Delete" asp-action="DeleteProduct" asp-controller="Home" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h3 class="text-center text-primary my-5"><strong>No Question Yet</strong></h3>
+}
